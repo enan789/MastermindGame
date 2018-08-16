@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import GameContainer from "./GameContainer";
 
 const App = () => (
-  <div> Stuff </div>
+  <GameContainer/>
 );
 const wrapper = document.getElementById("app");
 wrapper ? ReactDOM.render(<App />, wrapper) : null;
