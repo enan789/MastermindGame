@@ -1,6 +1,51 @@
 import React, { Component } from 'react';
 
 class GamePlay extends Component {
+  constructor(){
+    super();
+    this.code = [];
+    this.right = 0;
+    this.wrongPlace = 0;
+    this.turnsLeft = 10;
+  }
+
+  componentWillMount() {
+    this.code = [1,2,5,8]
+  }
+
+  randomizeCode() {
+    for(i=0; i < 4; i++) {
+
+      var num = Math.floor(Math.random() * 10)
+
+      while(this.code.includes(num)){
+        num = Math.floor(Math.random() * 10)
+      }
+
+      this.code.push(num);
+    }
+  }
+
+  checkCode(form) {
+    this.right = 0;
+    this.wrongPlace = 0;
+
+    for(i=0; i < 4; i++){
+      if (code[i]==form[i]){
+        this.right +=1;
+      } else if(this.code.includes(form[i])) {
+        this.wrongPlace +=1;
+      }
+    }
+
+    if( this.right == 4){
+      win();
+    } else if(turn == 0) {
+      lose();
+    } else {
+      turn -= 1;
+    }
+  }
 
   render() {
     return (
@@ -12,13 +57,16 @@ class GamePlay extends Component {
         <br/>
 
         <form>
-          <div>
-            <input type="text"/>
-            <input type="text"/>
-            <input type="text"/>
-            <input type="text"/>
+          <div class="columns">
+            <input class="container" type="text"/>
+            <br/>
+            <input class="container" type="text"/>
+            <br/>
+            <input class="container" type="text"/>
+            <br/>
+            <input class="container" type="text"/>
           </div>
-          <div>
+          <div class="container">
             <button class="btn btn-primary">Enter Code</button>
           </div>
         </form>

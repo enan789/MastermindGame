@@ -4,11 +4,6 @@ import GamePlay from './GamePlay';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 class GameContainer extends Component {
-  constructor(){
-    super();
-    this.code = [];
-  }
-
   gameStart(id){
 
   }
