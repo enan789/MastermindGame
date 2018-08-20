@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CodeForm from './CodeForm';
 
 class GamePlay extends Component {
   constructor(){
@@ -39,12 +40,32 @@ class GamePlay extends Component {
     }
 
     if( this.right == 4){
-      win();
+      this.win();
     } else if(turn == 0) {
-      lose();
+      this.lose();
     } else {
       turn -= 1;
     }
+  }
+
+  onSubmit = fields => {
+    console.log('Recieved: ', fields);
+    var inputs = []
+    inputs.push(fields.d1)
+    inputs.push(fields.d2)
+    inputs.push(fields.d3)
+    inputs.push(fields.d4)
+    console.log(inputs)
+
+
+  }
+
+  win(){
+    console.log('win');
+  }
+
+  lose(){
+    console.log('win');
   }
 
   render() {
@@ -55,22 +76,7 @@ class GamePlay extends Component {
           <h3 class="text-center">Digits do not repeat</h3>
         </div>
         <br/>
-
-        <form>
-          <div class="columns">
-            <input class="container" type="text"/>
-            <br/>
-            <input class="container" type="text"/>
-            <br/>
-            <input class="container" type="text"/>
-            <br/>
-            <input class="container" type="text"/>
-          </div>
-          <div class="container">
-            <button class="btn btn-primary">Enter Code</button>
-          </div>
-        </form>
-
+        <CodeForm onSubmit={fields => this.onSubmit(fields)}/>
       </div>
     );
   }
