@@ -74,10 +74,8 @@ class CodeForm extends React.Component {
   }
 
   validateForm() {
-    console.log(this.state);
     this.setState({formValid: this.state.d1Valid && this.state.d2Valid
       && this.state.d3Valid && this.state.d4Valid });
-    console.log(this.state);
   }
 
   errorClass(error) {
@@ -115,16 +113,14 @@ class CodeForm extends React.Component {
         {htmlErrors}
       </div>);
 
-    console.log(errors.length==0)
-
     return (
       <form>
-        <div class="columns">
+        <div className="columns">
           <div className={`form-group ${this.errorClass(this.state.formErrors.d1)}`}>
             <input
               name="d1"
               value={this.state.d1}
-              class="form-control"
+              className="form-control"
               type="text"
               onChange = {(event) => this.handleUserInput(event)}
             />
@@ -133,7 +129,7 @@ class CodeForm extends React.Component {
             <input
               name="d2"
               value={this.state.d2}
-              class="form-control"
+              className="form-control"
               type="text"
               onChange = {(event) => this.handleUserInput(event)}
             />
@@ -142,7 +138,7 @@ class CodeForm extends React.Component {
             <input
               name="d3"
               value={this.state.d3}
-              class="form-control"
+              className="form-control"
               type="text"
               onChange = {(event) => this.handleUserInput(event)}
             />
@@ -151,15 +147,15 @@ class CodeForm extends React.Component {
             <input
               name="d4"
               value={this.state.d4}
-              class="form-control"
+              className="form-control"
               type="text"
               onChange = {(event) => this.handleUserInput(event)}
             />
           </div>
         </div>
         {(this.state.formValid || errors == 0) ? '' : errorBox}
-        <div class="container">
-          <button onClick={e => this.onSubmit(e)} class="btn btn-primary"
+        <div className="container">
+          <button onClick={e => this.onSubmit(e)} className="btn btn-primary"
            disabled={!this.state.formValid}>Enter Code</button>
         </div>
       </form>

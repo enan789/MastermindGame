@@ -5,10 +5,10 @@ class GameStart extends Component {
 
   render() {
     return (
-      <div class="container text-center">
-        <h1 class="text-center">Mastermind</h1>
+      <div className="container text-center">
+        <h1 className="text-center">Mastermind</h1>
         <br/>
-        <Link to="/play"><button class="btn btn-primary">Start Game</button></Link>
+        <Link to="/play"><button className="btn btn-primary">Start Game</button></Link>
       </div>
     );
   }

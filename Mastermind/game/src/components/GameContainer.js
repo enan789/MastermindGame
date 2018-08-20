@@ -12,21 +12,22 @@ class GameContainer extends Component {
     return (
       <BrowserRouter>
         <div>
-          <nav class="navbar navbar-default bg-light">
-            <div class="container-fluid">
-              <div class="navbar-header">
+          <nav className="navbar navbar-default bg-light">
+            <div className="container-fluid">
+              <div className="navbar-header">
                 The Mastermind Game
               </div>
-              <ul class="nav navbar-left">
-                <li class="active nav-item">
+              <ul className="nav navbar-left">
+                <li className="active nav-item">
                   <Link to="/">Game</Link></li>
-                <li class="nav-item">
+                <li className="nav-item">
                   <Link to="/play">Scores</Link>
                 </li>
               </ul>
             </div>
           </nav>
           <div>
+            <br/>
             <Switch>
               <Route exact strict path="/" component={GameStart}/>
               <Route exact strict path="/play" component={GamePlay}/>
