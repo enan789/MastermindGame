@@ -10,10 +10,10 @@ class LoseScreen extends Component {
     }
 
     return(
-      <div class="column text-center">
+      <div className="column text-center">
         <h2> You Lose </h2>
         <h4> Answer: {this.code}</h4>
-        <Link to="/"><button class="btn btn-primary">Try Again?</button></Link>
+        <Link to="/"><button className="btn btn-primary">Try Again?</button></Link>
       </div>);
     };
 }

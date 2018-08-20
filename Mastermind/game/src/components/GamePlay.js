@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CodeForm from './CodeForm';
 import LoseScreen from './LoseScreen';
+import ScoreForm from './ScoreForm';
 
 class GamePlay extends Component {
   constructor(){
@@ -120,13 +121,14 @@ class GamePlay extends Component {
 
     if (this.state.result == 'win') {
       resultScreen = (
-        <div class="column text-center">
+        <div className="column text-center">
           <h3> You Win! </h3>
           <h4> Score: {this.state.score}</h4>
         </div>
       )
     }
     var loseScreen = (<LoseScreen code={this.state.code}/>);
+    var winScreen = (<ScoreForm score={this.state.score}/>);
 
     return (
       <div className="container">
@@ -140,18 +142,19 @@ class GamePlay extends Component {
         </div>
         <br/>
         {this.state.result ? '' : this.codeForm}
-        <div class="rows">
+        <div className="rows">
           {this.checks}
         </div>
-        <div class="rows">
-          <div class="d-inline-flex p-2">
-            <i class="fa fa-check"></i>
+        <div className="rows">
+          <div className="d-inline-flex p-2">
+            <i className="fa fa-check"></i>
             <div>= Number of correct digits</div>
           </div>
         </div>
         <br/>
         <div>
           {(this.state.result == 'lose') ? loseScreen : ''}
+          {(this.state.result == 'win') ? winScreen : ''}
         </div>
       </div>
     );
