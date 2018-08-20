@@ -4,9 +4,6 @@ import GamePlay from './GamePlay';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 class GameContainer extends Component {
-  gameStart(id){
-
-  }
 
   render() {
     return (
@@ -15,11 +12,9 @@ class GameContainer extends Component {
           <nav className="navbar navbar-default bg-light">
             <div className="container-fluid">
               <div className="navbar-header">
-                The Mastermind Game
+                <Link to="/">The Mastermind Game</Link>
               </div>
               <ul className="nav navbar-left">
-                <li className="active nav-item">
-                  <Link to="/">Game</Link></li>
                 <li className="nav-item">
                   <Link to="/play">Scores</Link>
                 </li>
