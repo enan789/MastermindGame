@@ -1,5 +1,7 @@
 import React from 'react';
 
+//The form that apeears when you win. It shows you your score and
+//lets you input your name. Very simular to Code Form.
 class ScoreForm extends React.Component {
   constructor (props) {
     super(props);
@@ -63,6 +65,7 @@ class ScoreForm extends React.Component {
     this.postScore(this.state.name, this.state.score)
   }
 
+  //The inital function wrote up to do the submission
   postScore(newName, newScore) {
     fetch('http://localhost:8000/api/scores/', {
       method: 'POST',

@@ -1,6 +1,11 @@
 import React from 'react';
 
+/* Code Form
+   The form that takes in the input for each turn of the game.
+   Each of the for text inputs only take in single number digits
+*/
 class CodeForm extends React.Component {
+  //Constructs the fields being used in the form
   constructor (props) {
     super(props);
     this.state = {
@@ -17,6 +22,7 @@ class CodeForm extends React.Component {
     }
   }
 
+  //Looks at the User input and validates thefields
   handleUserInput (e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -24,6 +30,7 @@ class CodeForm extends React.Component {
                 () => { this.validateField(name, value) });
   }
 
+  //Implements the central validation for each Field
   validateField(fieldName, value) {
     let fieldValidationErrors = this.state.formErrors;
     let d1Valid = this.state.d1Valid;
@@ -31,6 +38,7 @@ class CodeForm extends React.Component {
     let d3Valid = this.state.d3Valid;
     let d4Valid = this.state.d4Valid;
 
+    //checks for the invalid inputs
     let length = false;
     if(value){
       length = value.length == 1;
@@ -45,6 +53,7 @@ class CodeForm extends React.Component {
       message = length ? '' : ' is not a digit'
     }
 
+    //saves the validations into the Error fields
     switch(fieldName) {
       case 'd1':
         d1Valid = number && length;
@@ -73,15 +82,18 @@ class CodeForm extends React.Component {
                     }, this.validateForm);
   }
 
+  //Checks the validation of the for using the fields
   validateForm() {
     this.setState({formValid: this.state.d1Valid && this.state.d2Valid
       && this.state.d3Valid && this.state.d4Valid });
   }
 
+  //Attempts to add css to field
   errorClass(error) {
     return(error.length === 0 ? '' : 'has-error');
   }
 
+  //stops the refresh propogation and submits the form outside
   onSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state);

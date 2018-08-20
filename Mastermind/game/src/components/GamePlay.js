@@ -4,6 +4,7 @@ import LoseScreen from './LoseScreen';
 import ScoreForm from './ScoreForm';
 
 class GamePlay extends Component {
+  //Constructs all the important game imporant values
   constructor(){
     super();
     this.state = {
@@ -16,12 +17,15 @@ class GamePlay extends Component {
     };
   }
 
+  //initializes the random code and creates manipulatable form
   componentWillMount() {
     this.randomizeCode();
 
     this.codeForm = (<CodeForm onSubmit={fields => this.onSubmit(fields)}/>)
   }
 
+  //A life cycle that refreshes most of the most changing html to improve
+  //efficiency
   componentWillUpdate() {
     //Creates checks for correct choices
     if(this.state.right == 0) {
@@ -35,6 +39,7 @@ class GamePlay extends Component {
 
   }
 
+  //Uses random to create 4 unique random single digits
   randomizeCode() {
     for(var i=0; i < 4; i++) {
 
@@ -48,6 +53,7 @@ class GamePlay extends Component {
     }
   }
 
+  //The main game cycle function that runs on submission.
   checkCode(inputs) {
     this.setState({right: 0});
     this.setState({wrongPlace: 0});
@@ -64,6 +70,9 @@ class GamePlay extends Component {
         console.log('right ', this.state.right)
         rightNums.push(this.state.code[i]);
       }
+      //This is my attmpt to implment numbers that are in the in the code but in
+      //the wrong place
+
       //Otherwise if the number is somewhere else in the array
       //If the number was right before or later, or not already counted,
       /*else if(this.state.code.includes(inputs[i])) {
@@ -93,6 +102,7 @@ class GamePlay extends Component {
     console.log(this.state.turnsLeft)
   }
 
+  //converts the form of the inputs into an array
   onSubmit = fields => {
     var inputs = []
     inputs.push(fields.d1)
@@ -102,18 +112,18 @@ class GamePlay extends Component {
     this.checkCode(inputs);
   }
 
+  //changes the statee when a player wins
   win(){
     this.setState({
       result: 'win',
       score: this.state.turnsLeft * 100,
     })
 
-    console.log('win')
   }
 
+  //changes the state when the player lose
   lose(){
     this.setState({result: 'lose'})
-    console.log('lose')
   }
 
   render() {

@@ -4,6 +4,10 @@ import GamePlay from './GamePlay';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import PropTypes from "prop-types";
 
+/*GameContainer
+  Contains the entire project, implments the navbar and utilizes the BrowserRouter
+  It also acts as an entry point for the data.
+*/
 class GameContainer extends Component {
   static propTypes = {
     endpoint: PropTypes.string.isRequired,
