@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
+//The screen that appears when you lose
 class LoseScreen extends Component {
 
   render() {

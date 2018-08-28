@@ -61,22 +61,23 @@ class ScoreForm extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
     this.postScore(this.state.name, this.state.score)
   }
 
   //The inital function wrote up to do the submission
   postScore(newName, newScore) {
-    fetch('http://localhost:8000/api/scores/', {
+    console.log(newName, newScore)
+    let record = new FormData();
+    record.append('name', newName);
+    record.append('score', newScore);
+    fetch('/api/scores/', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        name: newName,
-        score: newScore,
-      })
+      body: record
     })
   }
 
