@@ -28,12 +28,18 @@ class GamePlay extends Component {
   //efficiency
   componentWillUpdate() {
     //Creates checks for correct choices
-    if(this.state.right == 0) {
+    if(this.state.right === 0) {
       this.checks = (<div>None Correct</div>)
     } else {
       let iter = [...Array(this.state.right).keys()]
       this.checks = iter.map(() => {
         return ( <i className="fa fa-check"></i> );
+      });
+    }
+    if(this.state.wrongPlace) {
+      let iter2 = [...Array(this.state.wrongPlace).keys()]
+      this.circles = iter2.map(() => {
+        return ( <i className="fa fa-circle"></i> );
       });
     }
 
@@ -49,7 +55,7 @@ class GamePlay extends Component {
         num = Math.floor(Math.random() * 10)
       }
 
-      this.state.code.push(num);
+      this.state.code.push(num.toString());
     }
   }
 
@@ -65,7 +71,7 @@ class GamePlay extends Component {
       console.log('code', this.state.code[i], 'input', inputs[i], )
       //if the number in the same index is the same it is right
       //and save the value into an array
-      if (this.state.code[i] == inputs[i]) {
+      if (this.state.code[i] === inputs[i]) {
         this.state.right += 1;
         console.log('right ', this.state.right)
         rightNums.push(this.state.code[i]);
@@ -75,21 +81,33 @@ class GamePlay extends Component {
 
       //Otherwise if the number is somewhere else in the array
       //If the number was right before or later, or not already counted,
-      /*else if(this.state.code.includes(inputs[i])) {
-          if( !rightNums.includes(inputs[i]) && !wrongPlaceNums.includes(inputs[i])) {
-            this.state.wrongPlace += 1;
-            wrongPlaceNums.push(inputs[i])
-          }
-      }*/
+      else if(this.state.code.includes(inputs[i])) {
+        console.log('is included')
+        if( !rightNums.includes(inputs[i]) && !wrongPlaceNums.includes(inputs[i])) {
+          console.log('Not in existing arrays')
+          this.state.wrongPlace += 1;
+          wrongPlaceNums.push(inputs[i])
+        }
+      }
+
+      else {
+        /*console.log(inputs[i], this.state.code, this.state.code.includes(inputs[i]))
+        this.state.code.forEach((num) => {
+          console.log(num == inputs[i])
+          console.log(num.toString() === inputs[i])
+        })*/
+      }
+
     }
     //Now check if the wrongPlace numbers appeared later
-    /*wrongPlaceNums.forEach((num) => {
+    wrongPlaceNums.forEach((num) => {
+      console.log('the number appears later')
       if( rightNums.includes(num) ) {
         this.state.wrongPlace -= 1;
       }
-    })*/
+    })
 
-    //console.log(this.state);
+    console.log(this.state);
     //console.log(inputs, this.state.code)
     this.state.turnsLeft -= 1;
 
@@ -154,11 +172,16 @@ class GamePlay extends Component {
         {this.state.result ? '' : this.codeForm}
         <div className="rows">
           {this.checks}
+          {this.circles}
         </div>
         <div className="rows">
           <div className="d-inline-flex p-2">
             <i className="fa fa-check"></i>
             <div>= Number of correct digits</div>
+          </div>
+          <div className="d-inline-flex p-2">
+            <i className="fa fa-circle"></i>
+            <div>= Number of wrongly placed digits</div>
           </div>
         </div>
         <br/>
