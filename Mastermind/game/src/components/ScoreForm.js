@@ -68,8 +68,8 @@ class ScoreForm extends React.Component {
   postScore(newName, newScore) {
     console.log(newName, newScore)
     let record = new FormData();
-    record.append('name', newName);
-    record.append('score', newScore);
+    record.append('Name', newName);
+    record.append('Score', newScore);
     fetch('/api/scores/', {
       method: 'POST',
       mode: 'no-cors',

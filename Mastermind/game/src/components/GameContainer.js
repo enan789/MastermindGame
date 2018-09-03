@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GameStart from './GameStart';
 import GamePlay from './GamePlay';
+import ScoreBoard from './ScoreBoard';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import PropTypes from "prop-types";
 
@@ -11,7 +12,6 @@ import PropTypes from "prop-types";
 class GameContainer extends Component {
   static propTypes = {
     endpoint: PropTypes.string.isRequired,
-    render: PropTypes.func.isRequired
   };
   state = {
       data: [],
@@ -19,6 +19,14 @@ class GameContainer extends Component {
       placeholder: "Loading..."
     };
   componentDidMount() {
+    this.getScores()
+  }
+
+  componentDidMount() {
+    this.getScores()
+  }
+
+  getScores() {
     fetch(this.props.endpoint)
       .then(response => {
         if (response.status !== 200) {
@@ -45,7 +53,7 @@ class GameContainer extends Component {
                   </div>
                   <ul className="nav navbar-left">
                     <li className="nav-item">
-                      <a href="#scores">Scores</a>
+                      <Link to="/scores">Scores</Link>
                     </li>
                   </ul>
                 </div>
@@ -55,13 +63,11 @@ class GameContainer extends Component {
                 <Switch>
                   <Route exact strict path="/" component={GameStart}/>
                   <Route exact strict path="/play" component={GamePlay}/>
+                  { loaded ? <Route exact strict path="/scores" render={data => <ScoreBoard data={this.state.data} />}/> : <p>{placeholder}</p> }
                 </Switch>
               </div>
             </div>
             </section>
-          <section id="scores">
-            {loaded ? this.props.render(data) : <p>{placeholder}</p>}
-          </section>
         </div>
       </BrowserRouter>
     );

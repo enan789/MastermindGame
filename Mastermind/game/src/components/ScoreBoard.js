@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import key from "weak-key";
+
+//The page that displays what is inside the database
 const ScoreBoard = ({ data }) =>
   !data.length ? (
     <p>Nothing to show</p>
@@ -26,6 +28,7 @@ const ScoreBoard = ({ data }) =>
     </div>
   );
 ScoreBoard.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  render: PropTypes.func.isRequired
 };
 export default ScoreBoard;

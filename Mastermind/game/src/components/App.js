@@ -4,8 +4,7 @@ import GameContainer from "./GameContainer";
 import ScoreBoard from "./ScoreBoard";
 
 const App = () => (
-  <GameContainer endpoint="api/scores/"
-                render={data => <ScoreBoard data={data} />} />
+  <GameContainer endpoint="api/scores/"/>
 );
 
 const wrapper = document.getElementById("app");

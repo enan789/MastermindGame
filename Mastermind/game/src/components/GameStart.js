@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
+//The intoductory page of the application which
+// allows you to start the game.
 class GameStart extends Component {
 
   render() {
