@@ -29,6 +29,5 @@ const ScoreBoard = ({ data }) =>
   );
 ScoreBoard.propTypes = {
   data: PropTypes.array.isRequired,
-  render: PropTypes.func.isRequired
 };
 export default ScoreBoard;

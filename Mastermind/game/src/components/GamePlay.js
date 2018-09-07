@@ -36,7 +36,10 @@ class GamePlay extends Component {
         return ( <i className="fa fa-check"></i> );
       });
     }
-    if(this.state.wrongPlace) {
+    if(this.state.wrongPlace === 0) {
+      this.circles = (<div></div>)
+    }
+    else {
       let iter2 = [...Array(this.state.wrongPlace).keys()]
       this.circles = iter2.map(() => {
         return ( <i className="fa fa-circle"></i> );
@@ -47,16 +50,18 @@ class GamePlay extends Component {
 
   //Uses random to create 4 unique random single digits
   randomizeCode() {
+    let tempCode = []
     for(var i=0; i < 4; i++) {
 
-      var num = Math.floor(Math.random() * 10)
+      var num = Math.floor(Math.random() * 10).toString()
 
-      while(this.state.code.includes(num)){
-        num = Math.floor(Math.random() * 10)
+      while(tempCode.includes(num)){
+        num = Math.floor(Math.random() * 10).toString()
       }
 
-      this.state.code.push(num.toString());
+      tempCode.push(num);
     }
+    this.state.code = tempCode;
   }
 
   //The main game cycle function that runs on submission.
@@ -109,12 +114,13 @@ class GamePlay extends Component {
 
     console.log(this.state);
     //console.log(inputs, this.state.code)
-    this.state.turnsLeft -= 1;
 
     if( this.state.right == 4){
       this.win();
     } else if(this.state.turnsLeft == 0) {
       this.lose();
+    } else {
+      this.state.turnsLeft -= 1;
     }
 
     console.log(this.state.turnsLeft)

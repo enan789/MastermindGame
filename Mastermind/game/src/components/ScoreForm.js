@@ -36,11 +36,11 @@ class ScoreForm extends React.Component {
     switch(fieldName) {
       case 'name':
         nameValid = length;
-        fieldValidationErrors.d1 = length ? '' : ' is either empty or too long';
+        fieldValidationErrors.name = length ? '' : ' is either empty or too long';
         break;
       case 'score':
         scoreValid = number;
-        fieldValidationErrors.d2 = length ? '' : ' is not a number';
+        fieldValidationErrors.score = length ? '' : ' is not a number';
         break;
       default:
         break;
